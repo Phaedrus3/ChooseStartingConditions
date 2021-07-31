@@ -23,7 +23,7 @@ Delete ```ChooseStartingConditions.dll``` and ```ChooseStartingConditions.json``
 1. Open the ```Options``` menu
 2. Open the ```Mod Settings``` menu
 3. Scroll across to the ```Choose Starting Conditions``` menu
-4. Under '''Starting Conditions Options''' you can Enable or Disable the mod 
+4. Under ```Starting Conditions Options``` you can Enable or Disable the mod 
 5. Use the sliders to set your Condition, Fatigue, Hunger, Thirst and Warmth. 
     * 100% is a "full" meter, so 100% thirst means you are NOT THIRSTY at all.
 6. If you want to add injuries, set ```Start with Injuries``` to YES and a list of options will appear
