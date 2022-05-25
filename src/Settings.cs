@@ -24,6 +24,11 @@ namespace ChooseStartingConditions
         Campfire, Electricity, Explosion, Fire, CarCrash, PlaneCrash
     }
 
+    public enum ConditionCap
+    {
+        None, Flat, Linear, NonLinear
+    }
+
     class ChooseStartingConditionsSettings : JsonModSettings
     {
         [Section("Starting Conditions Options")]
@@ -33,32 +38,27 @@ namespace ChooseStartingConditions
         [Choice("Disabled", "Enabled")]
         public ModFunction modFunction = ModFunction.Disabled;
 
-        [Section("Condition")]
-        [Name("Set Condition")]
-        [Description("Set Condition)")]
+        [Name("Condition")]
+        [Description("Set Condition")]
         [Slider(1f, 100f, 100, NumberFormat = "{0:F0}%")]
         public float condition = 100f;
 
-        [Section("Fatigue")]
-        [Name("Set Fatigue")]
+        [Name("Fatigue")]
         [Description("Set Fatigue")]
         [Slider(0f, 100f, 101, NumberFormat = "{0:F0}%")]
         public float fatigue = 100f;
 
-        [Section("Hunger")]
-        [Name("Set Hunger")]
+        [Name("Hunger")]
         [Description("Set Hunger")]
         [Slider(0f, 100f, 101, NumberFormat = "{0:F0}%")]
         public float hunger = 100f;
 
-        [Section("Thirst")]
-        [Name("Set Thirst")]
+        [Name("Thirst")]
         [Description("Set Thirst")]
         [Slider(0f, 100f, 101, NumberFormat = "{0:F0}%")]
         public float thirst = 100f;
 
-        [Section("Warmth")]
-        [Name("Set Warmth")]
+        [Name("Warmth")]
         [Description("Set Warmth")]
         [Slider(0f, 100f, 101, NumberFormat = "{0:F0}%")]
         public float warmth = 100f;
@@ -200,6 +200,7 @@ namespace ChooseStartingConditions
         public BluntTraumaCause sprainedWristCause = BluntTraumaCause.Avalanche;
 
 
+
         [Section("Illnesses")]
         [Name("Start with Illnesses")]
         [Description("Start with Illnesses")]
@@ -228,6 +229,7 @@ namespace ChooseStartingConditions
         [Name("Intestinal Parasites")]
         [Description("Start with Intestinal Parasites")]
         public bool parasites = false;
+     
 
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
         {
@@ -235,8 +237,7 @@ namespace ChooseStartingConditions
                 field.Name == nameof(injuries) || 
                 field.Name == nameof(bloodLoss) || field.Name == nameof(brokenRibs) || field.Name == nameof(burns) || field.Name == nameof(frostbite) || 
                 field.Name == nameof(sprainedAnkles) || field.Name == nameof(sprainedWrists) ||
-                field.Name == nameof(illnesses)
-                )
+                field.Name == nameof(illnesses))
             {
                 RefreshFields();
             }
@@ -295,7 +296,6 @@ namespace ChooseStartingConditions
             SetFieldVisible(nameof(infection), Settings.settings.modFunction != ModFunction.Disabled && illnesses);
             SetFieldVisible(nameof(parasites), Settings.settings.modFunction != ModFunction.Disabled && illnesses);
         }
-
     }
 
     internal static class Settings
