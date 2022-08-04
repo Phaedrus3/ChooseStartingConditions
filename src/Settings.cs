@@ -8,25 +8,21 @@ namespace ChooseStartingConditions
     {
         Disabled, Enabled
     }
-
     public enum BluntTraumaCause
     {
         Avalanche, CaveIn, CarCrash, PlaneCrash, Fall, Shipwreck, BearAttack, MooseAttack, WolfAttack, Attack
     }
-
     public enum BloodLossCause
     {
         Laceration, Shrapnel, ArrowWound, AxeWound, GunshotWound, KnifeWound, Avalanche, CaveIn, CarCrash, PlaneCrash, Fall, Shipwreck, BearAttack, MooseAttack, WolfAttack
     }
-
     public enum BurnsCause
     {
         Campfire, Electricity, Explosion, Fire, CarCrash, PlaneCrash
     }
-
-    public enum ConditionCap
+    public enum InfectionCause
     {
-        None, Flat, Linear, NonLinear
+        Laceration, Shrapnel, ArrowWound, AxeWound, GunshotWound, KnifeWound, BearAttack, MooseAttack, WolfAttack
     }
 
     class ChooseStartingConditionsSettings : JsonModSettings
@@ -226,6 +222,11 @@ namespace ChooseStartingConditions
         [Description("Start with an Infection")]
         public bool infection = false;
 
+        [Name("     Cause of Infection")]
+        [Description("Cause of Infection")]
+        [Choice("Laceration", "Shrapnel", "Arrow Wound", "Axe Wound", "Gunshot Wound", "Knife Wound", "Bear Bite", "Moose Attack", "Wolf Bite")]
+        public InfectionCause infectionCause = InfectionCause.Laceration;
+
         [Name("Intestinal Parasites")]
         [Description("Start with Intestinal Parasites")]
         public bool parasites = false;
@@ -235,9 +236,14 @@ namespace ChooseStartingConditions
         {
             if (field.Name == nameof(modFunction) || 
                 field.Name == nameof(injuries) || 
-                field.Name == nameof(bloodLoss) || field.Name == nameof(brokenRibs) || field.Name == nameof(burns) || field.Name == nameof(frostbite) || 
-                field.Name == nameof(sprainedAnkles) || field.Name == nameof(sprainedWrists) ||
-                field.Name == nameof(illnesses))
+                field.Name == nameof(bloodLoss) || 
+                field.Name == nameof(brokenRibs) || 
+                field.Name == nameof(burns) || 
+                field.Name == nameof(frostbite) || 
+                field.Name == nameof(sprainedAnkles) || 
+                field.Name == nameof(sprainedWrists) ||
+                field.Name == nameof(illnesses) || 
+                field.Name == nameof(infection))
             {
                 RefreshFields();
             }
@@ -294,6 +300,7 @@ namespace ChooseStartingConditions
             SetFieldVisible(nameof(foodPoisoning), Settings.settings.modFunction != ModFunction.Disabled && illnesses);
             SetFieldVisible(nameof(hypothermia), Settings.settings.modFunction != ModFunction.Disabled && illnesses);
             SetFieldVisible(nameof(infection), Settings.settings.modFunction != ModFunction.Disabled && illnesses);
+            SetFieldVisible(nameof(infectionCause), Settings.settings.modFunction != ModFunction.Disabled && illnesses && infection);
             SetFieldVisible(nameof(parasites), Settings.settings.modFunction != ModFunction.Disabled && illnesses);
         }
     }

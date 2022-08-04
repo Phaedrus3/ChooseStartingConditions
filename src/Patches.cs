@@ -1,5 +1,8 @@
 ﻿using System;
 using HarmonyLib;
+using UnityEngine;
+using MelonLoader;
+using System.Collections.Generic;
 
 namespace ChooseStartingConditions
 {
@@ -18,6 +21,7 @@ namespace ChooseStartingConditions
                 GameManager.GetHungerComponent().m_CurrentReserveCalories = Settings.settings.hunger / 100f * GameManager.GetHungerComponent().m_MaxReserveCalories;
                 GameManager.GetThirstComponent().m_CurrentThirst = 100f - Settings.settings.thirst;
                 GameManager.GetFreezingComponent().m_CurrentFreezing = 100f - Settings.settings.warmth;
+
 
                 if (Settings.settings.injuries)
                 {
@@ -95,7 +99,9 @@ namespace ChooseStartingConditions
                     }
                     if (Settings.settings.infection)
                     {
-                        GameManager.GetInfectionComponent().InfectionStart("GAMEPLAY_ColdWeather", 6, true, false);
+                        String[] infectionCause = new String[9] { "Laceration", "Shrapnel", "Arrow Wound", "Axe Wound", "Gunshot Wound", "Knife Wound", "GAMEPLAY_BearBite", "GAMEPLAY_MooseStompAttack", "GAMEPLAY_WolfBite" };
+                        string cause = infectionCause[(int)Settings.settings.infectionCause];
+                        GameManager.GetInfectionComponent().InfectionStart(cause, 6, true, false);
                     }
                     if (Settings.settings.parasites)
                     {
