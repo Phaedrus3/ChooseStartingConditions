@@ -1,5 +1,5 @@
 # Choose Starting Conditions
-A mod for The Long Dark. 
+A mod for The Long Dark. FOR GAME VERSION 2.00 / 2.02 (**PRE TALES FROM THE FAR TERRITORY**)    
 This mod allows you to choose your starting condition, fatigue, hunger, thirst, warmth, injuries and illnesses when starting a new game. 
 
 It is intended for use when starting a new SURVIVAL MODE game. It will do nothing to an existing game.
