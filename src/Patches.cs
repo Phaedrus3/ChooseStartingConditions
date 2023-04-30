@@ -1,8 +1,6 @@
-﻿using System;
-using HarmonyLib;
-using UnityEngine;
-using MelonLoader;
-using System.Collections.Generic;
+﻿using HarmonyLib;
+using Il2Cpp;
+using Il2CppTLD.Gear;
 
 namespace ChooseStartingConditions
 {

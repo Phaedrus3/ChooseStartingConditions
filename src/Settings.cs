@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using System;
+using Il2Cpp;
 using ModSettings;
 
 namespace ChooseStartingConditions
@@ -230,7 +230,7 @@ namespace ChooseStartingConditions
         [Name("Intestinal Parasites")]
         [Description("Start with Intestinal Parasites")]
         public bool parasites = false;
-     
+
 
         protected override void OnChange(FieldInfo field, object oldValue, object newValue)
         {
@@ -307,7 +307,7 @@ namespace ChooseStartingConditions
 
     internal static class Settings
     {
-        public static ChooseStartingConditionsSettings settings;
+        public static ChooseStartingConditionsSettings? settings;
         public static void OnLoad()
         {
             settings = new ChooseStartingConditionsSettings();
